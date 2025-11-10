@@ -69,7 +69,7 @@ def load_fusion_model(weight_path, embed_dim=512):
 def recommend_from_history(indices, fused_embs, fusion_weights, df, top_k=5):
     indices = torch.tensor(indices, dtype=torch.long, device=DEVICE)
     history_embs = fused_embs[indices]
-    decay = 0.84
+    decay = 0.95
     weights = torch.tensor([decay**(len(indices) - 1 - i) for i in range(len(indices))], device=DEVICE)
     weights = weights / weights.sum()
 
